@@ -13,6 +13,7 @@
 #define __MICRO_STEPPER_H
 #include <Arduino.h>
 #include <TMCStepper.h>
+#include <TimerOne.h>
 //#include "config.h"
 
 //#define HOLD_TORQUE //Use this option if you want to make the rotor hold the torque even if it stands still

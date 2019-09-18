@@ -18,5 +18,5 @@ void setup() {
 
 void loop() {
   UART_getFromMaster();
-  stepper_routine();
+  //stepper_routine();
 }//end loop
