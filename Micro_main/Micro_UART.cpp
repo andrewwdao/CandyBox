@@ -1,8 +1,8 @@
 /*-------------------------------------------
   UART - functions file
   ARDUINO MICRO
-  (c) Can Tho University 2019 
-  version 1.00 - 17/09/2019
+  (c) Minh-An Dao 2019 
+  version 1.10 - 18/09/2019
 ----------------------------------------------
  * All test function used with UART to USB has
  * to be in "No line ending" mode
@@ -12,12 +12,9 @@
 #include "Micro_UART.h"
 
 // ------ Private constants -----------------------------------
-
+#define DEFAULT_BAUDRATE  115200
 // ------ Private function prototypes -------------------------
-/**
 
-**/
-//void sendSD(int,int,int,int,int,int);
 // ------ Private variables -----------------------------------
 
 // ------ PUBLIC variable definitions -------------------------
@@ -27,7 +24,7 @@
 //--------------------------------------------------------------
 void UART_init()
 {
-  Serial.begin(57600);
+  Serial.begin(DEFAULT_BAUDRATE);
 }
 //------------------------------------------------------------
  void UART_getFromMaster() //Command:

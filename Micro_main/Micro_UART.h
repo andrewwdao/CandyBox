@@ -2,7 +2,7 @@
   UART - header file
   ARDUINO MICRO
   (c) Minh-An Dao 2019 
-  version 1.00 - 17/09/2019
+  version 1.10 - 18/09/2019
 ----------------------------------------------
  * All test function used with UART to USB has
  * to be in "No line ending" mode
@@ -22,11 +22,7 @@ Initialize UART
 **/
 void UART_init();
 /**
-confirm from UART that master is ready or not
-**/
-//void UART_isMasterReady();
-/**
-Collect the data from serial port if existed and send to SD
+Collect the data from serial port if existed and execute the appropriate command
 **/
 void UART_getFromMaster();
 // ------ Public variable -------------------------------------

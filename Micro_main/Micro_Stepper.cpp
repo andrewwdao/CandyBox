@@ -2,10 +2,12 @@
   Stepper Motor Controller - header file
   ARDUINO MICRO
   (c) Minh-An Dao 2019
-  version 1.00 - 17/09/2019
+  version 1.30 - 18/09/2019
  --------------------------------------------------------------
- * 
- * 
+ * This code use the TMC2208 as the driver for the stepper.
+ * Other Driver (A4988, DRV8825) should work fine too.
+ * You just need to calibrate the MIN_DELAY(us) and MAX_DELAY(us)
+ * in Micro_Stepper.cpp to fit those driver.
  -------------------------------------------------------------- */
 #ifndef  __MICRO_STEPPER_CPP 
 #define  __MICRO_STEPPER_CPP
@@ -15,20 +17,6 @@
 #define EN_PIN           2 // Enable
 #define DIR_PIN          4 // Direction
 #define STEP_PIN         3 // Step
-#define DUMB_BIT         true //only exists because of the library need a dumb boolean value
-#define DRIVER_ADDRESS 0b00 // TMC2209 Driver address according to MS1 and MS2
-#ifdef SOFTWARE_SERIAL_ON
-  #define SW_RX            63 // TMC2208/TMC2224 SoftwareSerial receive pin
-  #define SW_TX            40 // TMC2208/TMC2224 SoftwareSerial transmit pin
-#else
-  #define SERIAL_PORT Serial // TMC2208/TMC2224 HardwareSerial port
-#endif
-#define R_SENSE 0.11f // Match to your driver
-                      // SilentStepStick series use 0.11
-                      // UltiMachine Einsy and Archim2 boards use 0.2
-                      // Panucatt BSD2660 uses 0.1
-                      // Watterott TMC5160 uses 0.075
-
 #define DEFAULT_SPEED 70  //%
 #define MIN_SPEED     0   //%
 #define MAX_SPEED     100 //%
@@ -39,12 +27,6 @@
 // ------ Private function prototypes -------------------------
 
 // ------ Private variables -----------------------------------
-#ifdef SOFTWARE_SERIAL_ON
-  TMC2208Stepper driver(SW_RX, SW_TX, R_SENSE);                     // Software serial
-#else
-  TMC2208Stepper driver(&SERIAL_PORT, R_SENSE,DUMB_BIT);            // Hardware Serial
-#endif
-
 uint16_t  stepperSpeed; //already converted value
 bool      stepperIsRunning;
 bool      stepperDIR;
@@ -64,20 +46,13 @@ void stepper_init()
 	pinMode(EN_PIN, OUTPUT);
   pinMode(STEP_PIN, OUTPUT);
   pinMode(DIR_PIN, OUTPUT);
-  digitalWrite(EN_PIN, LOW);      // Enable driver in hardware
-  #ifdef SOFTWARE_SERIAL_ON
-    driver.beginSerial(115200);     // SW UART drivers
+  #ifdef HOLD_TORQUE
+    digitalWrite(EN_PIN,LOW); //always turn on driver --> holding torque
   #else
-    SERIAL_PORT.begin(115200);      // HW UART drivers
+    digitalWrite(EN_PIN, HIGH);// Disable driver in hardware, only turn on when "Go!" or "F|x" command is called
   #endif
-  driver.begin();                 // UART: Init SW UART (if selected) with default 115200 baudrate
-  driver.toff(5);                 // Enables driver in software
-  driver.rms_current(600);        // Set motor RMS current
-  driver.microsteps(16);          // Set microsteps to 1/16th
-//driver.en_spreadCycle(false);   // Toggle spreadCycle on TMC2208/2209/2224
-  driver.pwm_autoscale(true);     // Needed for stealthChop
   numOfPulse = 0;
-  numOfRot = 0; //default =0, if  >0, motor will rotate
+  numOfRot = 0;             //default =0, if  >0, motor will rotate
   lastMicros = micros();
 }//end stepper_init
 //--------------------------------
@@ -96,12 +71,12 @@ void stepper_routine() {
       digitalWrite(STEP_PIN, !digitalRead(STEP_PIN));
       if (++numOfPulse>=PULSE_PER_ROT*numOfRot) {//stop rotation
         numOfPulse =0; numOfRot = 0;
+        #ifndef HOLD_TORQUE
+          digitalWrite(EN_PIN, HIGH);// disable driver in hardware
+        #endif
       }//end if
     }//end if
   }//end if
-      // Run 5000 steps and switch direction in software
-    //shaft = !shaft;
-    //driver.shaft(DIR);
 }//end stepper_routine
 //--------------------------------
 void stepper_changeSpeed(int speedVal) {
@@ -136,14 +111,23 @@ void stepper_dir(bool sDIR) {
 //--------------------------------
 void stepper_run() {
   stepperIsRunning = true;
+  #ifndef HOLD_TORQUE
+    digitalWrite(EN_PIN, LOW);// enable driver in hardware
+  #endif
 }//end stepper_run
 //--------------------------------
 void stepper_stop() {
   stepperIsRunning = false;
+  #ifndef HOLD_TORQUE
+    digitalWrite(EN_PIN, HIGH);// disable driver in hardware
+  #endif
 }//end stepper_stop
 //--------------------------------
 void stepper_turn(float Rots) {
   numOfRot = Rots;
+  #ifndef HOLD_TORQUE
+    digitalWrite(EN_PIN, LOW);// enable driver in hardware
+  #endif
 }//end stepper_turn
 //--------------------------------
 #endif //__MICRO_STEPPER_CPP
