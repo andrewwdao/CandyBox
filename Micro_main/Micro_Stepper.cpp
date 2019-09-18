@@ -29,18 +29,14 @@
                       // Panucatt BSD2660 uses 0.1
                       // Watterott TMC5160 uses 0.075
 
-#define DEFAULT_SPEED 50  //%
+#define DEFAULT_SPEED 70  //%
 #define MIN_SPEED     0   //%
 #define MAX_SPEED     100 //%
-#define MIN_DELAY 90
+#define MIN_DELAY 80
 #define MAX_DELAY 5000
 
 #define PULSE_PER_ROT 3200
 // ------ Private function prototypes -------------------------
-/**
-Read the buttons
-*/
-void stepper_sendPulse(bool,int,float);
 
 // ------ Private variables -----------------------------------
 #ifdef SOFTWARE_SERIAL_ON
@@ -54,7 +50,7 @@ bool      stepperIsRunning;
 bool      stepperDIR;
 uint32_t  lastMicros;
 uint32_t  numOfPulse;
-uint16_t  numOfRot;
+float     numOfRot;
 // ------ PUBLIC variable definitions -------------------------
 
 //--------------------------------------------------------------
@@ -70,9 +66,9 @@ void stepper_init()
   pinMode(DIR_PIN, OUTPUT);
   digitalWrite(EN_PIN, LOW);      // Enable driver in hardware
   #ifdef SOFTWARE_SERIAL_ON
-    SERIAL_PORT.begin(115200);      // HW UART drivers
-  #else
     driver.beginSerial(115200);     // SW UART drivers
+  #else
+    SERIAL_PORT.begin(115200);      // HW UART drivers
   #endif
   driver.begin();                 // UART: Init SW UART (if selected) with default 115200 baudrate
   driver.toff(5);                 // Enables driver in software
@@ -92,14 +88,14 @@ void stepper_routine() {
       digitalWrite(DIR_PIN, stepperDIR);
       digitalWrite(STEP_PIN, !digitalRead(STEP_PIN));
     }//end if
-  }//end if infinitive loop
+  }//end if
   if (numOfPulse<PULSE_PER_ROT*numOfRot) {
     if ((micros()-lastMicros)>stepperSpeed) {
       lastMicros = micros();
       digitalWrite(DIR_PIN, stepperDIR);
       digitalWrite(STEP_PIN, !digitalRead(STEP_PIN));
-      if (numOfPulse++==PULSE_PER_ROT*numOfRot) {
-        numOfPulse =0; numOfRot = 0; //stop rotation
+      if (++numOfPulse>=PULSE_PER_ROT*numOfRot) {//stop rotation
+        numOfPulse =0; numOfRot = 0;
       }//end if
     }//end if
   }//end if
@@ -119,7 +115,7 @@ int stepper_readSpeed() {
 }//end stepper_readSpeed
 //--------------------------------
 void stepper_faster(int Spercent) {
-  uint16_t percentSpeed = map(stepperSpeed,MAX_DELAY,MIN_DELAY,MIN_SPEED,MAX_SPEED); //convert it to 0-100%
+  int percentSpeed = map(stepperSpeed,MAX_DELAY,MIN_DELAY,MIN_SPEED,MAX_SPEED); //convert it to 0-100%
   percentSpeed+=Spercent;
   if (percentSpeed>MAX_SPEED) {percentSpeed = MAX_SPEED;}
   if (percentSpeed<MIN_SPEED) {percentSpeed = MIN_SPEED;}
@@ -127,7 +123,7 @@ void stepper_faster(int Spercent) {
 }//end stepper_faster
 //--------------------------------
 void stepper_slower(int Spercent) {
-  uint16_t percentSpeed = map(stepperSpeed,MAX_DELAY,MIN_DELAY,MIN_SPEED,MAX_SPEED); //convert it to 0-100%
+  int percentSpeed = map(stepperSpeed,MAX_DELAY,MIN_DELAY,MIN_SPEED,MAX_SPEED); //convert it to 0-100%
   percentSpeed-=Spercent;
   if (percentSpeed>MAX_SPEED) {percentSpeed = MAX_SPEED;}
   if (percentSpeed<MIN_SPEED) {percentSpeed = MIN_SPEED;}
@@ -146,8 +142,8 @@ void stepper_stop() {
   stepperIsRunning = false;
 }//end stepper_stop
 //--------------------------------
-void stepper_turn(float NumOfRot) {
-  numOfRot = NumOfRot;
+void stepper_turn(float Rots) {
+  numOfRot = Rots;
 }//end stepper_turn
 //--------------------------------
 #endif //__MICRO_STEPPER_CPP
