@@ -12,7 +12,7 @@
 #include "Micro_UART.h"
 
 // ------ Private constants -----------------------------------
-
+#define DEFAULT_BAURATE 115200
 // ------ Private function prototypes -------------------------
 /**
 
@@ -27,7 +27,7 @@
 //--------------------------------------------------------------
 void UART_init()
 {
-  Serial.begin(57600);
+  Serial.begin(DEFAULT_BAURATE);
 }
 //------------------------------------------------------------
  void UART_getFromMaster() //Command:

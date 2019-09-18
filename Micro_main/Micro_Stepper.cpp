@@ -18,8 +18,8 @@
 #define DUMB_BIT         true //only exists because of the library need a dumb boolean value
 #define DRIVER_ADDRESS 0b00 // TMC2209 Driver address according to MS1 and MS2
 #ifdef SOFTWARE_SERIAL_ON
-  #define SW_RX            63 // TMC2208/TMC2224 SoftwareSerial receive pin
-  #define SW_TX            40 // TMC2208/TMC2224 SoftwareSerial transmit pin
+  #define SW_RX            9 // TMC2208/TMC2224 SoftwareSerial receive pin
+  #define SW_TX            8 // TMC2208/TMC2224 SoftwareSerial transmit pin
 #else
   #define SERIAL_PORT Serial // TMC2208/TMC2224 HardwareSerial port
 #endif
@@ -63,7 +63,7 @@ void stepper_init()
   stepperDIR = CW;
 	pinMode(EN_PIN, OUTPUT);
   pinMode(STEP_PIN, OUTPUT);
-  pinMode(DIR_PIN, OUTPUT);
+  //pinMode(DIR_PIN, OUTPUT);
   digitalWrite(EN_PIN, LOW);      // Enable driver in hardware
   #ifdef SOFTWARE_SERIAL_ON
     driver.beginSerial(115200);     // SW UART drivers
@@ -85,14 +85,16 @@ void stepper_routine() {
   if (stepperIsRunning) {
     if ((micros()-lastMicros)>stepperSpeed) {
       lastMicros = micros();
-      digitalWrite(DIR_PIN, stepperDIR);
+      // digitalWrite(DIR_PIN, stepperDIR);
+      driver.shaft(stepperDIR);
       digitalWrite(STEP_PIN, !digitalRead(STEP_PIN));
     }//end if
   }//end if
   if (numOfPulse<PULSE_PER_ROT*numOfRot) {
     if ((micros()-lastMicros)>stepperSpeed) {
       lastMicros = micros();
-      digitalWrite(DIR_PIN, stepperDIR);
+      // digitalWrite(DIR_PIN, stepperDIR);
+      driver.shaft(stepperDIR);
       digitalWrite(STEP_PIN, !digitalRead(STEP_PIN));
       if (++numOfPulse>=PULSE_PER_ROT*numOfRot) {//stop rotation
         numOfPulse =0; numOfRot = 0;

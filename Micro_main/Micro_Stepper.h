@@ -13,7 +13,7 @@
 #include <TMCStepper.h>
 //#include "config.h"
 
-//#define SOFTWARE_SERIAL_ON //turn this on to use the software serial connection
+#define SOFTWARE_SERIAL_ON //turn this on to use the software serial connection
 
 
 // ------ Public constants ------------------------------------
