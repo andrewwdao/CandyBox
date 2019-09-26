@@ -2,3 +2,5 @@ venv/
 wav_files/
 __pycache__/
 cb/
+
+stream.wav
