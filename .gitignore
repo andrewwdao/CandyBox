@@ -72,3 +72,6 @@ tools/mkspiffs/mkspiffs.exe
 *.DB-wal
 
 workspace/build
+
+venv/
+RaspberryPi_main/venv

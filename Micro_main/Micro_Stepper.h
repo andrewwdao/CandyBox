@@ -12,7 +12,7 @@
 #ifndef __MICRO_STEPPER_H
 #define __MICRO_STEPPER_H
 #include <Arduino.h>
-#include <TMCStepper.h>
+//#include <TMCStepper.h>
 #include <TimerOne.h>
 //#include "config.h"
 
