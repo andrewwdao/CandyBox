@@ -2,8 +2,7 @@ import json
 import urllib3
 
 # ----------------------------Configurable parameters:
-# -----Set Limit to be considered as being funny:
-JOY_THRESHOLD = 20
+
 # -----WebEmpath connection:
 mainUrl = 'https://api.webempath.net/v2/analyzeWav'
 mainApi = "bGgzUd80q853LlOHoqZyWYnrSimSqRCwg6XaYqmfY2Y"
@@ -13,7 +12,7 @@ http = urllib3.PoolManager()  # Create an http object
 current_joy = 0
 
 
-def check(audio_file):
+def check(audio_file, joy_threshold=20):
     global current_joy
     # Open the audio file and send it to the server
     with open(audio_file, 'rb') as file:
@@ -33,8 +32,7 @@ def check(audio_file):
         # result example: {'error': 0, 'calm': 38, 'anger': 1, 'joy': 7, 'sorrow': 2, 'energy': 6}
         print(result)
         current_joy = int(result['joy'])
-        print(current_joy)
-        if current_joy > JOY_THRESHOLD:
+        if current_joy > joy_threshold:
             return True
         else:
             return False

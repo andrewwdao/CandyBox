@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3627e0b-4bec-4608-a077-179d16e16e93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/AudioRecord.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Packages/PyAudio-0.2.11-cp37-cp37m-win32.whl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Testing_funcs/laughter_colection.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webEmpath.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/CandyBox.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CandyBox.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/motor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PyAudio-0.2.11-cp37-cp37m-win32.whl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/check_device.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/check_device.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/empath_live.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learn_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/VADnet/learn_xml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quick_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/quick_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/single_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stream.wav" beforeDir="false" afterPath="$PROJECT_DIR$/stream.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_serial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/test_serial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/udp_receiv.py" beforeDir="false" afterPath="$PROJECT_DIR$/Testing_funcs/VADnet/udp_receiv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webEmpath.py" beforeDir="false" afterPath="$PROJECT_DIR$/webEmpath.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
