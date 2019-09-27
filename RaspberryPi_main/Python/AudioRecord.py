@@ -10,7 +10,7 @@ chunk = 1024  # Record in chunks of 1024 samples
 sample_format = pyaudio.paInt16  # 16 bits per sample
 channels = 1
 fs = 11025  # Record at 11025 samples per second (required)
-seconds = 4
+seconds = 3
 # -----laughter wav file directory:
 joy_dir = "./wav_files/joy/"
 # ----------------------------Global variable:

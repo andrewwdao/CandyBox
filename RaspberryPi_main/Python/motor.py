@@ -11,6 +11,7 @@
 import serial
 import subprocess
 import sys
+import time
 
 
 class StepperUart:
@@ -28,12 +29,14 @@ class StepperUart:
                                    stopbits=serial.STOPBITS_ONE,
                                    bytesize=serial.EIGHTBITS
                                    )
-        self.slave.write(b'Candy Box ready!')
-        self.slave.read_until("Run!")
+        time.sleep(1)
         # save the speed
         data = "S|" + str(speed)
         data = data.encode("utf-8")
         self.slave.write(data)
+        time.sleep(1)
+        print(b'Candy Box ready!')
+        self.slave.write(b'Candy Box ready!')
 
     def move(self):
         data = "F|" + str(self.turns)

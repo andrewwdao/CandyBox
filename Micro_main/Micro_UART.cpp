@@ -58,6 +58,7 @@ void UART_init()
         digitalWrite(RED_PIN,LOW); //turn OFF red led
         digitalWrite(GREEN_PIN,LOW); //turn OFF green led
         digitalWrite(BLUE_PIN,HIGH); //turn ON the blue led
+        stepper_deactivate();
         return false;
       }//end if
     }//end if

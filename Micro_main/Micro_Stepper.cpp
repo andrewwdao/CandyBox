@@ -17,7 +17,7 @@
 #define EN_PIN           2 // Enable
 #define DIR_PIN          4 // Direction
 #define STEP_PIN         3 // Step
-#define DEFAULT_SPEED 70  //%
+#define DEFAULT_SPEED 100  //%
 #define MIN_SPEED     0   //%
 #define MAX_SPEED     100 //%
 #define MIN_DELAY 95
@@ -59,11 +59,13 @@ void stepper_init()
 }//end stepper_init
 //--------------------------------
 void stepper_activate() {
-  digitalWrite(EN_PIN,LOW); //activate driver
+  numOfRot=0; numOfPulse=0;
+  Timer1.attachInterrupt(stepper_routine);
 }//end stepper_activate
 //--------------------------------
 void stepper_deactivate() {
-  digitalWrite(EN_PIN, HIGH);// Disable driver in hardware
+  numOfRot=0; numOfPulse=0;
+  Timer1.detachInterrupt();
 }//end stepper_deactivate
 //--------------------------------
 void stepper_routine() {
