@@ -28,6 +28,14 @@ Initialize the Stepper motor
 */
 void stepper_init();
 /**
+Activate the Stepper motor
+*/
+void stepper_activate();
+/**
+Deactivate the Stepper motor
+*/
+void stepper_deactivate();
+/**
 Rountine to put in the loop for the stepper motor
 */
 void stepper_routine();

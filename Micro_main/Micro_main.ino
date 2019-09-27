@@ -12,11 +12,11 @@
 #include "Micro_Stepper.h"
 #include "Micro_UART.h"
 void setup() {
-  UART_init();
   stepper_init();
+  UART_init();
 }//end setup
 
 void loop() {
   UART_getFromMaster();
-  //stepper_routine();
+  UART_sendToMaster();
 }//end loop

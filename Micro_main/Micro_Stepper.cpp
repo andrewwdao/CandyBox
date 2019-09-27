@@ -54,9 +54,17 @@ void stepper_init()
   numOfRot = 0;             //default =0, if  >0, motor will rotate
   //lastMicros = micros();
   Timer1.initialize(stepperSpeed); //us
-  Timer1.attachInterrupt(stepper_routine); // blinkLED to run every 0.15 seconds
+  Timer1.attachInterrupt(stepper_routine);
 
 }//end stepper_init
+//--------------------------------
+void stepper_activate() {
+  digitalWrite(EN_PIN,LOW); //activate driver
+}//end stepper_activate
+//--------------------------------
+void stepper_deactivate() {
+  digitalWrite(EN_PIN, HIGH);// Disable driver in hardware
+}//end stepper_deactivate
 //--------------------------------
 void stepper_routine() {
   if (stepperIsRunning) {

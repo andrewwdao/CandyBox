@@ -25,6 +25,10 @@ void UART_init();
 Collect the data from serial port if existed and execute the appropriate command
 **/
 void UART_getFromMaster();
+/**
+Send data to master when needed (Run! and Stop!)
+**/
+void UART_sendToMaster();
 // ------ Public variable -------------------------------------
 
 #endif // __MICRO_UART_H

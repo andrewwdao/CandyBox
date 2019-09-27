@@ -28,6 +28,8 @@ class StepperUart:
                                    stopbits=serial.STOPBITS_ONE,
                                    bytesize=serial.EIGHTBITS
                                    )
+        self.slave.write(b'Candy Box ready!')
+        self.slave.read_until("Run!")
         # save the speed
         data = "S|" + str(speed)
         data = data.encode("utf-8")

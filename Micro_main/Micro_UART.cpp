@@ -13,10 +13,20 @@
 
 // ------ Private constants -----------------------------------
 #define DEFAULT_BAUDRATE  115200
+
+#define ON_PIN           9  // Enable
+#define OFF_PIN          10 // Disable
+
+#define RED_PIN          16 // Indicator LED
+#define GREEN_PIN        14 // Indicator LED
+#define BLUE_PIN         15 // Indicator LED
 // ------ Private function prototypes -------------------------
-
+/**
+Check if the master is ready or not
+**/
+bool MasterNotReady();
 // ------ Private variables -----------------------------------
-
+bool masterIsRunning;
 // ------ PUBLIC variable definitions -------------------------
 
 //--------------------------------------------------------------
@@ -25,7 +35,35 @@
 void UART_init()
 {
   Serial.begin(DEFAULT_BAUDRATE);
+  pinMode(ON_PIN,INPUT_PULLUP);
+  pinMode(OFF_PIN,INPUT_PULLUP);
+
+  pinMode(RED_PIN,OUTPUT);
+  pinMode(GREEN_PIN,OUTPUT);
+  pinMode(BLUE_PIN,OUTPUT);
+  digitalWrite(GREEN_PIN,LOW); //turn OFF green led
+  digitalWrite(BLUE_PIN,LOW); //turn OFF blue led
+  digitalWrite(RED_PIN,HIGH); //turn ON red led
+  masterIsRunning = false;
+  while (MasterNotReady());
 }
+//------------------------------------------------------------
+ bool MasterNotReady() {
+  if( Serial.available()) //if something appear in the serial monitor
+  { 
+    char Ctemp = Serial.read();
+    if (Ctemp=='C') { //if first letter is correct
+      String rec=Serial.readString();
+      if (rec == "andy Box ready!") {
+        digitalWrite(RED_PIN,LOW); //turn OFF red led
+        digitalWrite(GREEN_PIN,LOW); //turn OFF green led
+        digitalWrite(BLUE_PIN,HIGH); //turn ON the blue led
+        return false;
+      }//end if
+    }//end if
+  }//end if
+  return true;
+ }//end MasterNotReady
 //------------------------------------------------------------
  void UART_getFromMaster() //Command:
                            //Change Speed:        S|<speed from 0 100%> (S|70)
@@ -133,5 +171,34 @@ void UART_init()
 	  }// end if else
   }//end if
 }// end getFromMaster
+//--------------------------------
+//------------------------------------------------------------
+ void UART_sendToMaster() //Command:
+                           //Start Python code:   Run!
+                           //Stop Python code:    Stop!
+                           
+{
+  if (digitalRead(ON_PIN)==LOW) { //turn the python code on
+    if (!masterIsRunning) {
+      masterIsRunning = true;
+      stepper_activate();
+      Serial.print(F("Run!"));
+      digitalWrite(RED_PIN,LOW); //turn OFF red led
+      digitalWrite(BLUE_PIN,LOW); //turn OFF the blue led
+      digitalWrite(GREEN_PIN,HIGH); //turn ON green led
+      return;
+    }//end if
+  } else if (digitalRead(OFF_PIN)==LOW) { //turn the python code off
+    if (masterIsRunning) {
+      masterIsRunning = false;
+      stepper_deactivate();
+      Serial.print(F("Stop!"));
+      digitalWrite(RED_PIN,LOW); //turn OFF red led
+      digitalWrite(GREEN_PIN,LOW); //turn OFF green led
+      digitalWrite(BLUE_PIN,HIGH); //turn ON the blue led
+      return;
+    }//end if
+  }
+}//end UART_sendToMaster
 //--------------------------------
 #endif // __MICRO_UART_CPP
