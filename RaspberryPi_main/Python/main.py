@@ -3,7 +3,9 @@ import PiAudioRecord
 import requests
 import webEmpath
 from motor import StepperUart,StepperControl
+import sys
 
+sys.settrace()
 # ---------------------------- Configurable parameters -------------------------
 # -----Choose the method to control the stepper:
 UART_CONTROL = False
@@ -26,6 +28,7 @@ def wifiIsConnected():
 # ------------------------------------------------------------------------------
 
 if __name__ == "__main__":
+
     # Check wifi connectivity
     while not wifiIsConnected():
         continue
@@ -38,7 +41,6 @@ if __name__ == "__main__":
     while True:
         try:
             PiAudioRecord.start()
-
             if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
                 PiAudioRecord.save_joy(webEmpath.joy_now())
                 stepper.move()
