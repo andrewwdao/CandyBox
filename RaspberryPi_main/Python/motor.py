@@ -56,7 +56,7 @@ class StepperControl:
         control_dir = "./main" + str(self.turns) + str(self.speed)
         try:
             #retcode = subprocess.call(control_dir, shell=True)
-            retcode = subprocess.Popen(["./main 3 100"])
+            retcode = subprocess.Popen(["./main 3 100"], shell=True)
             if retcode < 0:
                 print("Child was terminated by signal", -retcode, file=sys.stderr)
             else:
