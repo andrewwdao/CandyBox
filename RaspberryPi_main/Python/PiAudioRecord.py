@@ -52,9 +52,9 @@ def start():
     wf.close()
 
     # convert it to appropriate freq
-    converter = sox.Transformer()
-    converter.convert(samplerate=target_rate)
-    converter.build(org_wav,des_wav)
+    #converter = sox.Transformer()
+    #converter.convert(samplerate=target_rate)
+    #converter.build(org_wav,des_wav)
     # equivalent to "sox -r target_rate org_wav des_wav" in command line
     # equivalent to "sox org_wav des_wav rate target_rate" in command line
     #args = [org_wav, des_wav,'rate', str(target_rate)]
