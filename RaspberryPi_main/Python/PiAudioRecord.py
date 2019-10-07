@@ -1,6 +1,5 @@
 import pyaudio
 import wave
-#import sox
 from shutil import copy2
 from datetime import datetime
 
