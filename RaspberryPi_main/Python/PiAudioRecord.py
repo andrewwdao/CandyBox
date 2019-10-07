@@ -41,7 +41,7 @@ def start():
     # Stop and close the stream
     stream.stop_stream()
     stream.close()
-    myAudio.terminate()
+    #myAudio.terminate()
 
     # Create the original audio file
     wf = wave.open(org_wav, 'wb')
