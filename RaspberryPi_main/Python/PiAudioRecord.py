@@ -41,7 +41,6 @@ def start():
     # Stop and close the stream
     stream.stop_stream()
     stream.close()
-    #myAudio.terminate()
 
     # Create the original audio file
     wf = wave.open(org_wav, 'wb')
@@ -57,8 +56,8 @@ def start():
     #converter.build(org_wav,des_wav)
     # equivalent to "sox -r target_rate org_wav des_wav" in command line
     # equivalent to "sox org_wav des_wav rate target_rate" in command line
-    #args = [org_wav, des_wav,'rate', str(target_rate)]
-    #sox.core.sox(args)
+    args = [org_wav, des_wav,'rate', str(target_rate)]
+    sox.core.sox(args)
 
 def save_joy(joy_now):
     now = datetime.now()
