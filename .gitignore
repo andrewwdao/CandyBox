@@ -75,3 +75,6 @@ workspace/build
 
 venv/
 RaspberryPi_main/venv
+
+.idea/
+*/.idea./
