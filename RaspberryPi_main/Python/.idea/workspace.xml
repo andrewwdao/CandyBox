@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3627e0b-4bec-4608-a077-179d16e16e93" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/PiAudioRecord.py" beforeDir="false" afterPath="$PROJECT_DIR$/PiAudioRecord.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

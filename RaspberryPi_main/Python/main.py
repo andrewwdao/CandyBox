@@ -27,8 +27,8 @@ def wifiIsConnected():
 
 if __name__ == "__main__":
     # Check wifi connectivity
-    while not wifiIsConnected():
-        continue
+    #while not wifiIsConnected():
+    #    continue
     # ----------------------------Setup
     if UART_CONTROL:
         stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)
