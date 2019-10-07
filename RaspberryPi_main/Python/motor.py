@@ -53,13 +53,5 @@ class StepperControl:
         self.speed = speed
 
     def move(self):
-        control_dir = "./main" + str(self.turns) + str(self.speed)
-        try:
-            #retcode = subprocess.call(control_dir, shell=True)
-            retcode = subprocess.Popen(["./main 3 100"], shell=True)
-            # if retcode < 0:
-            #     print("Child was terminated by signal", -retcode, file=sys.stderr)
-            # else:
-            #     print("Child returned", retcode, file=sys.stderr)
-        except OSError as e:
-            print("Execution failed:", e, file=sys.stderr)
+        control_dir = "./stepper" + str(self.turns) + str(self.speed)
+        subprocess.Popen([control_dir], shell=True)

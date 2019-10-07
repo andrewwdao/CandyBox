@@ -1,5 +1,5 @@
-import PiAudioRecord
-#import AudioRecord
+import PiAudioRecord #use for Raspberry Pi
+#import AudioRecord #use for NUC
 import requests
 import webEmpath
 from motor import StepperUart,StepperControl
