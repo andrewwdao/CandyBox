@@ -53,5 +53,5 @@ class StepperControl:
         self.speed = speed
 
     def move(self):
-        control_dir = "./stepper" + str(self.turns) + str(self.speed)
+        control_dir = "./stepper " + str(self.turns) + " " + str(self.speed)
         subprocess.Popen([control_dir], shell=True)
