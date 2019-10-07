@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3627e0b-4bec-4608-a077-179d16e16e93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/Embedded_Code.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/minha.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PiAudioRecord.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AudioRecord.py" beforeDir="false" afterPath="$PROJECT_DIR$/AudioRecord.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stream.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/crowd_laugh_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/crowd_laugh_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh-10.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh_10.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh_10_mono.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh_4.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh_5.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wav_files/laugh_9.wav" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

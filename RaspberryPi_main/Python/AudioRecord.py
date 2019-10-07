@@ -12,7 +12,7 @@ channels = 1
 fs = 11025  # Record at 11025 samples per second (required)
 seconds = 3
 # -----laughter wav file directory:
-joy_dir = "./wav_files/joy/"
+joy_dir = "./joy_wav/"
 # ----------------------------Global variable:
 myAudio = pyaudio.PyAudio()  # Create an interface to PortAudio
 
