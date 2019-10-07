@@ -45,7 +45,7 @@ CFLAGS  = -l wiringPi -O2 -Wall -pipe -I$(IDIR)                               \
 $(ODIR)/%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-main: $(OBJ)
+stepper: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
 .PHONY: clean
