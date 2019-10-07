@@ -63,7 +63,3 @@ def start():
 def save_joy(joy_now):
     now = datetime.now()
     copy2(des_wav, joy_dir+now.strftime("%H.%M.%S_%d%m%Y_")+str(joy_now)+".wav")
-
-if __name__=="__main__":
-    start()
-

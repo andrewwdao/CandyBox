@@ -27,8 +27,8 @@ def wifiIsConnected():
 
 if __name__ == "__main__":
     # Check wifi connectivity
-    #while not wifiIsConnected():
-    #    continue
+    while not wifiIsConnected():
+        continue
     # ----------------------------Setup
     if UART_CONTROL:
         stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)
@@ -39,5 +39,5 @@ if __name__ == "__main__":
         PiAudioRecord.start()
         if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
             PiAudioRecord.save_joy(webEmpath.joy_now())
-            stepper.move()
+            #stepper.move()
             print("Candy Drop!")
