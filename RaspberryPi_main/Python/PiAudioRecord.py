@@ -18,7 +18,7 @@ sample_format = pyaudio.paInt16  # 16 bits per sample/ resolution
 channels = 1
 dev_index = 2 # device index found by p.get_device_info_by_index(ii)
 # -----laughter wav file directory:
-joy_dir = "./wav_files/joy/"
+joy_dir = "./joy_wav/"
 # ----------------------------Global variable:
 myAudio = pyaudio.PyAudio()  # Create an interface to PortAudio
 
