@@ -36,8 +36,9 @@ if __name__ == "__main__":
         stepper = StepperControl(TURNS, SPEED)
     # ----------------------------Loop
     while True:
-        PiAudioRecord.start()
         try:
+            PiAudioRecord.start()
+
             if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
                 PiAudioRecord.save_joy(webEmpath.joy_now())
                 stepper.move()
