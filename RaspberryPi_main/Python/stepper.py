@@ -1,4 +1,10 @@
-'''Command:
+"""------------------------------------------------------------*-
+  LCD I2C python module for Raspberry Pi
+  Tested on: Raspberry Pi 3 B+
+  (c) Can Tho University 2019
+  version 1.00 - 01/10/2019
+ --------------------------------------------------------------
+ * Command when using UART controller:
                            Change Speed:        S|<speed from 0 100%> (S|70)
                            Rotate Direction:    D|<0 for CW - 1 for CCW> (D|0)
                            Number of Rotation:  F|<float> (F|0.7)
@@ -7,7 +13,7 @@
                            Read speed:          Read
                            Run unlimited:       Go!
                            Stop immediately:    Pause!
-'''
+ --------------------------------------------------------------"""
 import serial
 import subprocess
 import sys

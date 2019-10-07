@@ -1,8 +1,17 @@
+"""------------------------------------------------------------*-
+  CandyBox main module for Raspberry Pi
+  Tested on: Raspberry Pi 3 B+
+  (c) Can Tho University 2019
+  version 1.00 - 08/10/2019
+ --------------------------------------------------------------
+ *
+ *
+ --------------------------------------------------------------"""
 import PiAudioRecord #use for Raspberry Pi
 #import AudioRecord #use for NUC
 import requests
 import webEmpath
-from motor import StepperUart,StepperControl
+from stepper import StepperUart,StepperControl
 import sys
 
 #sys.settrace()

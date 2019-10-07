@@ -1,3 +1,12 @@
+"""------------------------------------------------------------*-
+  Audio Recording module for NUC
+  Tested on: NUC
+  (c) Can Tho University 2019
+  version 1.00 - 08/10/2019
+ --------------------------------------------------------------
+ *
+ *
+ --------------------------------------------------------------"""
 import pyaudio
 import wave
 from shutil import copy2

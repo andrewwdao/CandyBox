@@ -1,3 +1,12 @@
+"""------------------------------------------------------------*-
+  WebEmpath interaction module for Raspberry Pi
+  Tested on: Raspberry Pi 3 B+
+  (c) Can Tho University 2019
+  version 1.00 - 08/10/2019
+ --------------------------------------------------------------
+ *
+ *
+ --------------------------------------------------------------"""
 import json
 import urllib3
 
