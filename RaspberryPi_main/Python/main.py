@@ -37,7 +37,10 @@ if __name__ == "__main__":
     # ----------------------------Loop
     while True:
         PiAudioRecord.start()
-        if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
-            PiAudioRecord.save_joy(webEmpath.joy_now())
-            #stepper.move()
-            print("Candy Drop!")
+        try:
+            if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
+                PiAudioRecord.save_joy(webEmpath.joy_now())
+                stepper.move()
+                print("Candy Drop!")
+        except:
+            print("some fucking error!")
