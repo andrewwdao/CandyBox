@@ -5,7 +5,11 @@ Including code for:
  - Arduino micro
  - Raspberry Pi 3B+
 
-Last update: 09/2019
+Tested on:
+ - Arduino micro + NUC
+ - Raspberry Pi 3B+
+ 
+Last update: 10/2019
 Made for Konel Inc., Tokyo, Japan
 
-(c) Minh-An Dao - 2019
+(c) Minh-An Dao - Nhat-Khoa Phan - 2019
