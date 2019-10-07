@@ -10,7 +10,7 @@ import sys
 # -----Choose the method to control the stepper:
 UART_CONTROL = False
 # -----Limit to be considered as being funny:
-JOY_THRESHOLD = 21
+JOY_THRESHOLD = 5
 # -----Stepper Motor parameters:
 TURNS = 1
 SPEED = 100
