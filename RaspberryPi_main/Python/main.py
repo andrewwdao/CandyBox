@@ -5,7 +5,7 @@ import webEmpath
 from motor import StepperUart,StepperControl
 import sys
 
-#sys.settrace()
+sys.settrace()
 # ---------------------------- Configurable parameters -------------------------
 # -----Choose the method to control the stepper:
 UART_CONTROL = False
