@@ -1,0 +1,5 @@
+sudo systemctl enable CandyBox
+sudo systemctl enable LED
+
+sudo systemctl disable CandyBox
+sudo systemctl disable LED
