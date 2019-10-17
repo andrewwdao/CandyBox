@@ -74,7 +74,7 @@ if __name__ == "__main__":
         # ----------------------------Loop
         # Check wifi connectivity
         while True:
-            if not False: #wifiIsConnected():
+            if not wifiIsConnected():
                 print('not connected')
                 for a in range(0, 3):
                     GPIO.output(LED_PIN, GPIO.HIGH)
@@ -82,7 +82,6 @@ if __name__ == "__main__":
                     GPIO.output(LED_PIN, GPIO.LOW)
                     time.sleep(FAST_INTERVAL)
                 time.sleep(LONG_INTERVAL)
-
             else:
                 if READY:
                     print('connected: ON')
