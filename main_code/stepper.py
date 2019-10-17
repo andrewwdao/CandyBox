@@ -48,7 +48,7 @@ class StepperUart:
 
 class StepperControl:
 
-    def __init__(self, turns=1, speed=90):
+    def __init__(self, turns=1, speed=85):
         self.turns = turns
         self.speed = speed
 
