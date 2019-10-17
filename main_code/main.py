@@ -46,6 +46,7 @@ def offISR(channel):
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setwarnings(False)
 GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
@@ -70,11 +71,11 @@ if __name__ == "__main__":
         # ----------------------------Loop
         # Check wifi connectivity
         while True:
-            if not wifiIsConnected():
+            if not False: #wifiIsConnected():
                 print('not connected')
                 subpro.Popen(["python3 notConnected.py"], shell=True)
             else:
-                if True:
+                if READY:
                     print('connected: ON')
                     subpro.Popen(["python3 ready.py"], shell=True)
                     PiAudioRecord.start()
