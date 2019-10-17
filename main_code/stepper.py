@@ -15,16 +15,12 @@
                            Stop immediately:    Pause!
  --------------------------------------------------------------"""
 import serial
-import subprocess
+import subprocess as subpro
 import sys
 import time
 
 
 class StepperUart:
-    # ----------------------------Configurable parameters:
-    # -----UART parameters:
-    turns = float()
-    speed = int()
 
     def __init__(self, com_port='COM1', baud_rate=115200, turns=5, speed=80):
         self.turns = turns
@@ -51,13 +47,11 @@ class StepperUart:
 
 
 class StepperControl:
-    turns = float()
-    speed = int()
 
-    def __init__(self, turns=5, speed=80):
+    def __init__(self, turns=1, speed=90):
         self.turns = turns
         self.speed = speed
 
     def move(self):
         control_dir = "./stepper " + str(self.turns) + " " + str(self.speed)
-        subprocess.Popen([control_dir], shell=True)
+        subpro.Popen([control_dir], shell=True)

@@ -1,0 +1,11 @@
+venv/
+wav_files/
+__pycache__/
+cb/
+
+stream.wav
+
+..idea/
+*/.idea./
+__pycache__/
+joy_wav/
