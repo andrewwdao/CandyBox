@@ -1,0 +1,15 @@
+[Unit]
+Description=CandyBox main service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 -u main.py
+WorkingDirectory=/home/pi/CandyBox/main_code
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
