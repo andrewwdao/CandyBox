@@ -33,6 +33,8 @@ LED_PIN = 23
 ON_PIN = 3
 OFF_PIN = 4
 
+FAST_INTERVAL = 0.3
+LONG_INTERVAL = 2
 DEBOUNCE=10
 READY = False
 
@@ -73,7 +75,13 @@ if __name__ == "__main__":
         while True:
             if not False: #wifiIsConnected():
                 print('not connected')
-                subpro.Popen(["python3 notConnected.py"], shell=True)
+                for a in range(0, 3):
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+                    time.sleep(FAST_INTERVAL)
+                    GPIO.output(LED_PIN, GPIO.LOW)
+                    time.sleep(FAST_INTERVAL)
+                time.sleep(LONG_INTERVAL)
+
             else:
                 if READY:
                     print('connected: ON')
