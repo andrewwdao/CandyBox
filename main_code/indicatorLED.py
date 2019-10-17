@@ -35,9 +35,6 @@ def offISR(channel):
     global READY
     READY = False
 
-GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
-GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
-
 def wifiIsConnected():
     try:
         r = requests.get("http://www.google.com", timeout=500)
@@ -47,24 +44,30 @@ def wifiIsConnected():
         return False
 
 if __name__ == "__main__":
-    # Check wifi connectivity
-    while True:
-        if not wifiIsConnected():
-            print('not connected')
-            for a in range(0,3):
-                GPIO.output(LED_PIN, GPIO.HIGH)
-                time.sleep(FAST_INTERVAL)
-                GPIO.output(LED_PIN, GPIO.LOW)
-                time.sleep(FAST_INTERVAL)
-            time.sleep(LONG_INTERVAL)
-        else:
-            if READY:
-                print('connected: ON')
-                GPIO.output(LED_PIN, GPIO.HIGH)
-                time.sleep(LONG_INTERVAL)
-                GPIO.output(LED_PIN, GPIO.LOW)
+    try:
+        GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
+        GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
+        # Check wifi connectivity
+        while True:
+            if not wifiIsConnected():
+                print('not connected')
+                for a in range(0, 3):
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+                    time.sleep(FAST_INTERVAL)
+                    GPIO.output(LED_PIN, GPIO.LOW)
+                    time.sleep(FAST_INTERVAL)
                 time.sleep(LONG_INTERVAL)
             else:
-                print('connected: OFF')
-                GPIO.output(LED_PIN,GPIO.HIGH)
+                if READY:
+                    print('connected: ON')
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+                    time.sleep(LONG_INTERVAL)
+                    GPIO.output(LED_PIN, GPIO.LOW)
+                    time.sleep(LONG_INTERVAL)
+                else:
+                    print('connected: OFF')
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+    except KeyboardInterrupt:
+        GPIO.close()
+        pass
 
