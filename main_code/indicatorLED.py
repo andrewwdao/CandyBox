@@ -13,9 +13,9 @@ import RPi.GPIO as GPIO  # default as BCM mode!
 import requests
 import time
 
-LED_PIN = 4
-ON_PIN = 9
-OFF_PIN = 7
+LED_PIN = 23
+ON_PIN = 3
+OFF_PIN = 4
 
 DEBOUNCE=10
 FAST_INTERVAL = 0.3
@@ -68,6 +68,5 @@ if __name__ == "__main__":
                     print('connected: OFF')
                     GPIO.output(LED_PIN, GPIO.HIGH)
     except KeyboardInterrupt:
-        GPIO.close()
         pass
 
