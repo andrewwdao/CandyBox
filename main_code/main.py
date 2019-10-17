@@ -35,10 +35,6 @@ OFF_PIN = 4
 
 DEBOUNCE=10
 READY = False
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED_PIN, GPIO.OUT)
-GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def onISR(channel):
     global READY
@@ -47,6 +43,13 @@ def onISR(channel):
 def offISR(channel):
     global READY
     READY = False
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
+GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
 
 def wifiIsConnected():
     try:
@@ -59,8 +62,6 @@ def wifiIsConnected():
 
 if __name__ == "__main__":
     try:
-        GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
-        GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
         # ----------------------------Setup
         if UART_CONTROL:
             stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)
@@ -73,7 +74,7 @@ if __name__ == "__main__":
                 print('not connected')
                 subpro.Popen(["python3 notConnected.py"], shell=True)
             else:
-                if READY:
+                if True:
                     print('connected: ON')
                     subpro.Popen(["python3 ready.py"], shell=True)
                     PiAudioRecord.start()
