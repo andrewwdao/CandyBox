@@ -48,8 +48,8 @@ def offISR(channel):
     READY = False
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED_PIN, GPIO.OUT)
 GPIO.setwarnings(False)
+GPIO.setup(LED_PIN, GPIO.OUT)
 GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)

@@ -16,8 +16,9 @@ SHORT_INTERVAL = 0.3
 LONG_INTERVAL = 2
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(LED_PIN, GPIO.OUT)
 GPIO.setwarnings(False)
+GPIO.setup(LED_PIN, GPIO.OUT)
+
 
 
 if __name__ == "__main__":
