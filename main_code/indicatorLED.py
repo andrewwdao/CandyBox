@@ -14,10 +14,29 @@ import requests
 import time
 
 LED_PIN = 4
+ON_PIN = 9
+OFF_PIN = 7
+
+DEBOUNCE=10
 FAST_INTERVAL = 0.3
 LONG_INTERVAL = 2
+
+READY = False
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+def onISR(channel):
+    global READY
+    READY = True
+
+def offISR(channel):
+    global READY
+    READY = False
+
+GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
+GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
 
 def wifiIsConnected():
     try:
@@ -38,4 +57,11 @@ if __name__ == "__main__":
                 time.sleep(FAST_INTERVAL)
             time.sleep(LONG_INTERVAL)
         else:
-            GPIO.output(LED_PIN, GPIO.HIGH)
+            if READY:
+                GPIO.output(LED_PIN, GPIO.HIGH)
+                time.sleep(LONG_INTERVAL)
+                GPIO.output(LED_PIN, GPIO.LOW)
+                time.sleep(LONG_INTERVAL)
+            else:
+                GPIO.output(LED_PIN,GPIO.HIGH)
+
