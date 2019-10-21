@@ -45,6 +45,10 @@ def connect():
     print('socket connected!')
 
 def socket_connect():
+    time.sleep(1)
+    print('connecting to socket...')
+    socket.connect("http://0.0.0.0:5000")
+    time.sleep(0.5)
     while not SOCKET_CONNECTED:
         try:
             print('connecting to socket...')
