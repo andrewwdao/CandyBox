@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
-app.set('views','./nodejs/views');
+app.set('views','./views');
 app.use(express.static('public'));
 
 var server = require("http").Server(app);
