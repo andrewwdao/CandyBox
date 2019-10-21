@@ -39,7 +39,7 @@ DEBOUNCE=10
 READY = False
 
 COMPLIER = 'node'
-TARGET = 'index.js'
+TARGET = 'nodejs/index.js'
 
 def onISR(channel):
     global READY
