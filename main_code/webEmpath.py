@@ -8,6 +8,7 @@
  *
  --------------------------------------------------------------"""
 import json
+from builtins import int
 import urllib3
 
 # ----------------------------Configurable parameters:
@@ -39,12 +40,16 @@ def check(audio_file, joy_threshold=20):
     if res.status == 200:
         result = json.loads(res.data.decode('utf-8'))  # anger, joy, calm, energy, sorrow
         # result example: {'error': 0, 'calm': 38, 'anger': 1, 'joy': 7, 'sorrow': 2, 'energy': 6}
+        result_list = [int(result['error']), int(result['calm']), int(result['anger']),
+                       int(result['joy']), int(result['sorrow']), int(result['energy'])]
         print(result)
-        current_joy = int(result['joy'])
-        if current_joy > joy_threshold:
-            return True
+        if  max(result_list) == int(result['joy']):
+            if int(result['joy']) > joy_threshold:
+                return True
+            else:
+                return False
         else:
-            return False
+            return  False
     else:
         print("ERROR")
         return False

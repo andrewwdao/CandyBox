@@ -22,10 +22,10 @@ import time
 # -----Choose the method to control the stepper:
 UART_CONTROL = False
 # -----Limit to be considered as being funny:
-JOY_THRESHOLD = 5
+JOY_THRESHOLD = 20
 # -----Stepper Motor parameters:
 TURNS = 1
-SPEED = 100
+SPEED = 85
 # -----UART parameters: (ignore if don't use UART to control the system)
 COM_PORT = 'COM4'
 BAUD_RATE = 115200
