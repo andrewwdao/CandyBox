@@ -11,6 +11,7 @@ import json
 from builtins import int
 import urllib3
 import socketio
+import time
 # ----------------------------Configurable parameters:
 
 # -----WebEmpath connection:
@@ -41,10 +42,12 @@ def on_message(data):
 def connect():
     global SOCKET_CONNECTED
     SOCKET_CONNECTED = True
+    print("Hellooooooo")
 
 while not SOCKET_CONNECTED:
     try:
-        socket.connect("http://0.0.0.0:3000")
+        socket.connect("http://localhost:3000")
+        time.sleep(1)
     except:
         pass
 
