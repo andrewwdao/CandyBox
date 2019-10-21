@@ -17,12 +17,11 @@ import subprocess as subpro
 import sys
 import time
 
+
 #sys.settrace()
 # ---------------------------- Configurable parameters -------------------------
 # -----Choose the method to control the stepper:
 UART_CONTROL = False
-# -----Limit to be considered as being funny:
-JOY_THRESHOLD = 20
 # -----Stepper Motor parameters:
 TURNS = 1
 SPEED = 85
@@ -35,7 +34,7 @@ ON_PIN = 3
 OFF_PIN = 4
 
 FAST_INTERVAL = 0.3
-LONG_INTERVAL = 2
+LONG_INTERVAL = 1
 DEBOUNCE=10
 READY = False
 
@@ -54,6 +53,7 @@ GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
 GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
+
 
 def wifiIsConnected():
     try:
@@ -87,7 +87,7 @@ if __name__ == "__main__":
                     print('connected: ON')
                     subpro.Popen(["python3 ready.py"], shell=True)
                     PiAudioRecord.start()
-                    if webEmpath.check(PiAudioRecord.des_wav, JOY_THRESHOLD):
+                    if webEmpath.check(PiAudioRecord.des_wav):
                         PiAudioRecord.save_joy(webEmpath.joy_now())
                         stepper.move()
                         print("Candy Drop!")
