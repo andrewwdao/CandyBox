@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
-app.set('views','./views');
+app.set('views','.nodejs/views');
 app.use(express.static('public'));
 
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
-server.listen(process.env.PORT || 3000);
+server.listen(process.env.PORT || 5000);
 
 moods = {
     "calm": 25,
