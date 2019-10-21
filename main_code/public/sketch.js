@@ -1,4 +1,4 @@
-const socket = io('http://localhost:1235');
+const socket = io('http://0.0.0.0:1235');
 
 
 let update_val = (c, a, j, s, e) => {
