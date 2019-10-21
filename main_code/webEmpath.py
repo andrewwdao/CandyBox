@@ -42,13 +42,13 @@ def on_message(data):
 def connect():
     global SOCKET_CONNECTED
     SOCKET_CONNECTED = True
-    print("Hellooooooo")
+    print('socket connected!')
 
 def socket_connect():
     while not SOCKET_CONNECTED:
         try:
-            print("is this called?")
-            socket.connect("http://localhost:3000")
+            print('connecting to socket...')
+            socket.connect("http://0.0.0.0:3000")
             time.sleep(1)
         except:
             pass
