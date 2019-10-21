@@ -25,7 +25,7 @@ $(document).ready(()=>{
         // update_val(calm, angry, joy, sorrow, energy)
     });
     socket.on("candy_drop", y => {
-        $("#candy_drop_alert").show(0).delay(500).hide(0);
+        $("#candy_drop_alert").show(0).delay(1500).hide(0);
     });
     $("#btnApply").click(()=>{
         let thresh = $("#thVal").val();
