@@ -45,17 +45,17 @@ def connect():
     print('socket connected!')
 
 def socket_connect():
-    time.sleep(1)
+    time.sleep(3)
     print('connecting to socket...')
-    socket.connect("http://0.0.0.0:1234")
-    time.sleep(0.5)
-    while not SOCKET_CONNECTED:
-        try:
-            print('connecting to socket...')
-            socket.connect("http://0.0.0.0:1234")
-            time.sleep(1)
-        except:
-            pass
+    socket.connect("http://0.0.0.0:1235")
+    # time.sleep(0.5)
+    # while not SOCKET_CONNECTED:
+    #     try:
+    #         print('connecting to socket...')
+    #         socket.connect("http://0.0.0.0:1234")
+    #         time.sleep(1)
+    #     except:
+    #         pass
 
 
 def check(audio_file):
