@@ -47,12 +47,12 @@ def connect():
 def socket_connect():
     time.sleep(1)
     print('connecting to socket...')
-    socket.connect("http://0.0.0.0:5000")
+    socket.connect("http://0.0.0.0:1234")
     time.sleep(0.5)
     while not SOCKET_CONNECTED:
         try:
             print('connecting to socket...')
-            socket.connect("http://0.0.0.0:5000")
+            socket.connect("http://0.0.0.0:1234")
             time.sleep(1)
         except:
             pass
