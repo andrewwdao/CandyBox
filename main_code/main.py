@@ -38,6 +38,9 @@ LONG_INTERVAL = 1
 DEBOUNCE=10
 READY = False
 
+COMPLIER = 'node'
+TARGET = 'index.js'
+
 def onISR(channel):
     global READY
     READY = True
@@ -66,6 +69,7 @@ def wifiIsConnected():
 
 if __name__ == "__main__":
     try:
+        p = subpro.Popen([COMPLIER, TARGET], shell=False)
         # ----------------------------Setup
         if UART_CONTROL:
             stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)

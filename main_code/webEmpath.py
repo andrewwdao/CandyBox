@@ -22,6 +22,7 @@ JOY_THRESHOLD = 20
 http = urllib3.PoolManager()  # Create an http object
 current_joy = 0
 
+SOCKET_CONNECTED = False
 
 #socketio config:
 socket = socketio.Client()
@@ -36,9 +37,16 @@ def on_message(data):
     print("New threshold: ", data)
     JOY_THRESHOLD = int(data)
 
+@socket.event
+def connect():
+    global SOCKET_CONNECTED
+    SOCKET_CONNECTED = True
 
-socket.connect("http://0.0.0.0:3000")
-
+while not SOCKET_CONNECTED:
+    try:
+        socket.connect("http://0.0.0.0:3000")
+    except:
+        pass
 
 def check(audio_file):
     global current_joy
