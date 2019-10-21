@@ -24,7 +24,7 @@ io.on('connection', socket => {
     io.emit("new_thresh", thresh);
   });
   socket.on("drop_candy", y =>{
-      if(y == 'YES'){
+      if(y == 'Y'){
           io.emit("candy_drop", y);
       }
   });
