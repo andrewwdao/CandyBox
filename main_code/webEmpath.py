@@ -44,12 +44,15 @@ def connect():
     SOCKET_CONNECTED = True
     print("Hellooooooo")
 
-while not SOCKET_CONNECTED:
-    try:
-        socket.connect("http://localhost:3000")
-        time.sleep(1)
-    except:
-        pass
+def socket_connect():
+    while not SOCKET_CONNECTED:
+        try:
+            print("is this called?")
+            socket.connect("http://localhost:3000")
+            time.sleep(1)
+        except:
+            pass
+
 
 def check(audio_file):
     global current_joy

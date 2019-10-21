@@ -70,6 +70,7 @@ def wifiIsConnected():
 if __name__ == "__main__":
     try:
         p = subpro.Popen([COMPLIER, TARGET], shell=False)
+        webEmpath.socket_connect()
         # ----------------------------Setup
         if UART_CONTROL:
             stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)
