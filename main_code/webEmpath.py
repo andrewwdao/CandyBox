@@ -45,7 +45,7 @@ def connect():
     print('socket connected!')
 
 def socket_connect():
-    time.sleep(2)
+    time.sleep(5)
     print('connecting to socket...')
     socket.connect("http://0.0.0.0:1235")
     # time.sleep(0.5)
