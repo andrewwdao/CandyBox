@@ -70,7 +70,7 @@ def wifiIsConnected():
 if __name__ == "__main__":
     try:
         p = subpro.Popen(["sudo killall -9 node"], shell=True)
-        time.sleep(0.5)
+        time.sleep(1.5)
         p = subpro.Popen([COMPLIER, TARGET], shell=False)
         webEmpath.socket_connect()
         # ----------------------------Setup
