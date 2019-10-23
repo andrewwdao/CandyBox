@@ -34,7 +34,7 @@ myAudio = pyaudio.PyAudio()  # Create an interface to PortAudio
 
 
 def start():
-    os.system('rw') # allow write
+    os.system('sudo mount / -o remount,rw') # allow write
     # Initialize array to store frames
     frames = []
     # Initialize an instance for recording audio
@@ -69,7 +69,7 @@ def start():
     # equivalent to "sox org_wav des_wav rate target_rate" in command line
     args = [org_wav, des_wav,'rate', str(target_rate)]
     sox.core.sox(args)
-    os.system('ro') # read-only from now
+    os.system('sudo mount / -o remount,ro') # read-only from now
 
 # def save_joy(joy_now):
 #     now = datetime.now()
