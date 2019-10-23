@@ -54,6 +54,7 @@ def start():
 
     # Create the original audio file
     subpro.Popen(['rw'], shell=True) # allow write
+    time.sleep(0.5)
     wf = wave.open(org_wav, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(myAudio.get_sample_size(sample_format))
@@ -69,11 +70,13 @@ def start():
     # equivalent to "sox org_wav des_wav rate target_rate" in command line
     args = [org_wav, des_wav,'rate', str(target_rate)]
     sox.core.sox(args)
+    time.sleep(0.5)
     subpro.Popen(['ro'], shell=True) # read-only from now
 
 def save_joy(joy_now):
     now = datetime.now()
     subpro.Popen(['rw'], shell=True) # allow write
+    time.sleep(0.5)
     copy2(des_wav, joy_dir+now.strftime("%H.%M.%S_%d%m%Y_")+str(joy_now)+".wav")
+    time.sleep(0.5)
     subpro.Popen(['ro'], shell=True) # read-only from now
-    
