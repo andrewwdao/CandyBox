@@ -26,7 +26,7 @@ if __name__ == "__main__":
         GPIO.output(LED_PIN, GPIO.HIGH)
         time.sleep(SHORT_INTERVAL)
         GPIO.output(LED_PIN, GPIO.LOW)
-        time.sleep(SHORT_INTERVAL)
+        # time.sleep(SHORT_INTERVAL)
     except KeyboardInterrupt:
         pass
 
