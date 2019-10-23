@@ -12,7 +12,7 @@ import time
 
 LED_PIN = 23
 
-SHORT_INTERVAL = 0.3
+SHORT_INTERVAL = 0.8
 LONG_INTERVAL = 1
 
 GPIO.setmode(GPIO.BCM)

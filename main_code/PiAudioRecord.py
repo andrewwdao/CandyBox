@@ -34,6 +34,7 @@ myAudio = pyaudio.PyAudio()  # Create an interface to PortAudio
 
 
 def start():
+    os.system('rw 2> /dev/null') # allow write
     # Initialize array to store frames
     frames = []
     # Initialize an instance for recording audio
@@ -53,8 +54,6 @@ def start():
     stream.close()
 
     # Create the original audio file
-    os.system('rw -f') # allow write
-    time.sleep(0.5)
     wf = wave.open(org_wav, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(myAudio.get_sample_size(sample_format))
@@ -70,7 +69,7 @@ def start():
     # equivalent to "sox org_wav des_wav rate target_rate" in command line
     args = [org_wav, des_wav,'rate', str(target_rate)]
     sox.core.sox(args)
-    os.system('ro -f') # read-only from now
+    os.system('ro 2> /dev/null') # read-only from now
 
 # def save_joy(joy_now):
 #     now = datetime.now()
