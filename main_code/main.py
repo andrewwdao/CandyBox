@@ -106,7 +106,7 @@ if __name__ == "__main__":
                     subpro.Popen(["python3", "ready.py"], shell=False)
                     PiAudioRecord.start()
                     if webEmpath.check(PiAudioRecord.des_wav):
-                        PiAudioRecord.save_joy(webEmpath.joy_now())
+                        # PiAudioRecord.save_joy(webEmpath.joy_now())
                         stepper.move()
                         print("Candy Drop!")
                 else:
