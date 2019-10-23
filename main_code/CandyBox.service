@@ -6,11 +6,11 @@ DefaultDependencies=true
 [Service]
 Type=simple
 ExecStart=/usr/bin/python3 -u main.py
-WorkingDirectory=/home/pi/CandyBox/main_code
+WorkingDirectory=/home/CandyBox/main_code
 StandardOutput=inherit
 StandardError=inherit
 Restart=no
-User=pi
+User=CandyBox
 
 [Install]
 WantedBy=sysinit.target multi-user.target
