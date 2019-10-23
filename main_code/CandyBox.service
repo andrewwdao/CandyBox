@@ -1,6 +1,6 @@
 [Unit]
 Description=CandyBox main service
-After=multi-user.target
+After=network.target
 DefaultDependencies=true
 
 [Service]
