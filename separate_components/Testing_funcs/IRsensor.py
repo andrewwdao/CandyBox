@@ -13,7 +13,7 @@ import RPi.GPIO as GPIO  # default as BCM mode!
 import requests
 import time
 
-IR_PIN = 2
+IR_PIN = 22
 
 DEBOUNCE=10
 IR_FLAG = False
