@@ -35,9 +35,8 @@ def message(data):
 @socket.on("new_thresh")
 def on_message(data):
     global JOY_THRESHOLD
-    print("New threshold: ", data)
     JOY_THRESHOLD = int(data)
-
+    print("New threshold: ", JOY_THRESHOLD)
 @socket.event
 def connect():
     global SOCKET_CONNECTED
