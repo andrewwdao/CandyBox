@@ -113,4 +113,5 @@ if __name__ == "__main__":
                     print('connected: OFF')
                     GPIO.output(LED_PIN, GPIO.HIGH)
     except KeyboardInterrupt:
+        GPIO.cleanup()
         pass
