@@ -33,9 +33,10 @@ if __name__ == "__main__":
         print('System ready!')
         while True:
             if IR_FLAG:
+                IR_FLAG = False
                 ir_counter+=1
                 print("Candy Fall!")
-                print("Current candy out: %d",ir_counter)
+                print("Current candy out: ",ir_counter)
     except KeyboardInterrupt:
         GPIO.cleanup()
         pass
