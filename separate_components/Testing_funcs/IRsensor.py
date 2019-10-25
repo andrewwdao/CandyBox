@@ -15,7 +15,7 @@ import time
 
 IR_PIN = 22
 
-DEBOUNCE=10
+DEBOUNCE=100
 IR_FLAG = False
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
