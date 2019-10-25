@@ -35,6 +35,7 @@ if __name__ == "__main__":
             if IR_FLAG:
                 ir_counter+=1
                 print("Candy Fall!")
+                print("Current candy out: %d",ir_counter)
     except KeyboardInterrupt:
         GPIO.cleanup()
         pass
