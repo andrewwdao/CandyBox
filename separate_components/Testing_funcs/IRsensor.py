@@ -30,6 +30,7 @@ if __name__ == "__main__":
     try:
         GPIO.add_event_detect(IR_PIN, GPIO.RISING, callback=IR_ISR, bouncetime=DEBOUNCE)
         ir_counter=0
+        print('System ready!')
         while True:
             if IR_FLAG:
                 ir_counter+=1
