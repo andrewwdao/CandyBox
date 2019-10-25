@@ -29,17 +29,20 @@ SPEED = 85
 COM_PORT = 'COM4'
 BAUD_RATE = 115200
 
+IR_PIN = 22
 LED_PIN = 23
 ON_PIN = 3
 OFF_PIN = 4
 
 FAST_INTERVAL = 0.3
 LONG_INTERVAL = 1
-DEBOUNCE=10
+DEBOUNCE=500
 READY = False
+IR_FLAG = False
 
-# COMPLIER = 'node'
-# TARGET = 'index.js'
+def IR_ISR(channel):
+    global IR_FLAG
+    IR_FLAG = True
 
 def onISR(channel):
     global READY
@@ -52,11 +55,14 @@ def offISR(channel):
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(LED_PIN, GPIO.OUT)
+GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.add_event_detect(IR_PIN, GPIO.RISING, callback=IR_ISR, bouncetime=DEBOUNCE)
 GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
 GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
 
+candy_counter=0
 
 def wifiIsConnected():
     try:

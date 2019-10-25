@@ -21,7 +21,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-
 def IR_ISR(channel):
     global IR_FLAG
     IR_FLAG = True
