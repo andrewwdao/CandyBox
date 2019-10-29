@@ -75,23 +75,25 @@ def wifiIsConnected():
 
 if __name__ == "__main__":
     try:
-        webEmpath.socket_connect()
         # ----------------------------Setup
         if UART_CONTROL:
             stepper = StepperUart(COM_PORT, BAUD_RATE, TURNS, SPEED)
         else:
             stepper = StepperControl(TURNS, SPEED)
-        # while True:
-        #     if not wifiIsConnected():
-        #         print('not connected')
-        #         for a in range(0, 3):
-        #             GPIO.output(LED_PIN, GPIO.HIGH)
-        #             time.sleep(FAST_INTERVAL)
-        #             GPIO.output(LED_PIN, GPIO.LOW)
-        #             time.sleep(FAST_INTERVAL)
-        #         time.sleep(LONG_INTERVAL)
-        #     else:
-        #         break;
+        # Check wifi connectivity
+        while True:
+            if not wifiIsConnected():
+                print('not connected')
+                for a in range(0, 3):
+                    GPIO.output(LED_PIN, GPIO.HIGH)
+                    time.sleep(FAST_INTERVAL)
+                    GPIO.output(LED_PIN, GPIO.LOW)
+                    time.sleep(FAST_INTERVAL)
+                time.sleep(LONG_INTERVAL)
+            else:
+                break;
+        # Connect to webEmpath
+        webEmpath.socket_connect()
         # ----------------------------Loop
         # Check wifi connectivity
         while True:
