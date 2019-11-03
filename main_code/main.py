@@ -108,7 +108,7 @@ if __name__ == "__main__":
                 if READY:
                     print('connected: ON')
                     subpro.Popen(["python3", "ready.py"], shell=False)
-                    #PiAudioRecord.start()
+                    PiAudioRecord.start()
                     if webEmpath.check(PiAudioRecord.des_wav):
                         # PiAudioRecord.save_joy(webEmpath.joy_now())
                         stepper.move()
