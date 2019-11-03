@@ -24,7 +24,7 @@ import time
 UART_CONTROL = False
 # -----Stepper Motor parameters:
 TURNS = 1
-SPEED = 85
+SPEED = 95
 # -----UART parameters: (ignore if don't use UART to control the system)
 COM_PORT = 'COM4'
 BAUD_RATE = 115200
