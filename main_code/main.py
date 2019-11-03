@@ -29,38 +29,37 @@ SPEED = 85
 COM_PORT = 'COM4'
 BAUD_RATE = 115200
 
-IR_PIN = 22
+# IR_PIN = 22
 LED_PIN = 23
-ON_PIN = 3
-OFF_PIN = 4
+ON_OFF_PIN = 18
 
 FAST_INTERVAL = 0.3
 LONG_INTERVAL = 1
-DEBOUNCE=500
+DEBOUNCE=700
 READY = False
-IR_FLAG = False
+# IR_FLAG = False
 
-def IR_ISR(channel):
-    global IR_FLAG
-    IR_FLAG = True
+# def IR_ISR(channel):
+#     global IR_FLAG
+#     IR_FLAG = True
 
-def onISR(channel):
+def onoffISR(channel):
     global READY
-    READY = True
+    READY = not READY
 
-def offISR(channel):
-    global READY
-    READY = False
+# def offISR(channel):
+#     global READY
+#     READY = False
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(LED_PIN, GPIO.OUT)
-GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.add_event_detect(IR_PIN, GPIO.RISING, callback=IR_ISR, bouncetime=DEBOUNCE)
-GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
-GPIO.add_event_detect(OFF_PIN, GPIO.FALLING, callback=offISR, bouncetime=DEBOUNCE)
+# GPIO.setup(IR_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+# GPIO.setup(ON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(ON_OFF_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO.add_event_detect(IR_PIN, GPIO.RISING, callback=IR_ISR, bouncetime=DEBOUNCE)
+# GPIO.add_event_detect(ON_PIN, GPIO.FALLING, callback=onISR, bouncetime=DEBOUNCE)
+GPIO.add_event_detect(ON_OFF_PIN, GPIO.FALLING, callback=onoffISR, bouncetime=DEBOUNCE)
 
 candy_counter=0
 
@@ -109,7 +108,7 @@ if __name__ == "__main__":
                 if READY:
                     print('connected: ON')
                     subpro.Popen(["python3", "ready.py"], shell=False)
-                    PiAudioRecord.start()
+                    #PiAudioRecord.start()
                     if webEmpath.check(PiAudioRecord.des_wav):
                         # PiAudioRecord.save_joy(webEmpath.joy_now())
                         stepper.move()

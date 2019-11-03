@@ -15,7 +15,7 @@
 
 // ------ Private constants -----------------------------------
 #define EN_PIN           0 // Enable - GPIO_GEN_0 - GPIO17 - PIN 11
-#define DIR_PIN          1 // Direction - GPIO_GEN_1 - GPIO18 - PIN 12
+#define DIR_PIN          3 // Direction - GPIO_GEN_3 - GPIO22 - PIN 15
 #define STEP_PIN         2 // Step - GPIO_GEN_2 - GPIO27 - PIN 13
 
 #define MIN_SPEED     0   //%
