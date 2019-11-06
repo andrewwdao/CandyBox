@@ -88,7 +88,7 @@ def check(audio_file):
         else:
             return  False
     else:
-        print("ERROR")
+        print("HTTP CONNECTION ERROR")
         return False
 
 
