@@ -81,7 +81,7 @@ def check(audio_file):
         print(result)
         if  max(result_list) == int(result['joy']):
             if int(result['joy']) > JOY_THRESHOLD:
-                socket.emit("drop_candy", "Y")
+                socket.emit("drop_candy", result['joy'])
                 return True
             else:
                 return False
