@@ -62,14 +62,18 @@ def check(audio_file):
     # Open the audio file and send it to the server
     with open(audio_file, 'rb') as file:
         file_data = file.read()
-    res = http.request(
-        method='POST',
-        url=mainUrl,
-        fields={
-            'apikey': mainApi,
-            "wav": (audio_file, file_data)
-        }
-    )
+    try:
+        res = http.request(
+            method='POST',
+            url=mainUrl,
+            fields={
+                'apikey': mainApi,
+                "wav": (audio_file, file_data)
+            }
+        )
+    except:
+        print("API refused")
+        return False
 
     # Check response from server and execute the appropriate task
     if res.status == 200:
